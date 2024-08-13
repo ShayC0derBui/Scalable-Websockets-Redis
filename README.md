@@ -12,7 +12,7 @@ REDIS_PASSWORD=password
 ## How to run
 - starts nginx as load balancer and 3 websocket servers and redis
 ```bash
-docker compose up --scale websocket_server=3
+docker compose up --scale websocket_server=3 --build
 ```
 
 ## Technologies used
