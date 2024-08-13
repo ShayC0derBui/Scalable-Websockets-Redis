@@ -1,0 +1,27 @@
+services:
+  load_balancer:
+    image: nginx:latest
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+    depends_on:
+      - websocket_server
+    ports:
+      - "3000:3000"
+
+  websocket_server:
+    build: .
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass password
+    volumes:
+      - redis:/data
+
+volumes:
+  redis:
+    driver: local
