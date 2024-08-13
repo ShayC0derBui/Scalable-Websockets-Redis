@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { AppController } from './controllers/entry-point/app.controller';
+import { AppService } from './services/entry-point/app.service';
+import { LocationModule } from './socket-gateway/location.module';
 
 @Module({
-  imports: [],
+  imports: [LocationModule],
   controllers: [AppController],
   providers: [AppService],
 })
